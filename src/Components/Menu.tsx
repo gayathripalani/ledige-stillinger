@@ -1,8 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
+import {Link} from "react-router-dom";
 
-const HeaderTab: React.FC = () => {
+const Menu: React.FC = () => {
 	const history = useHistory();
 
 	let homehightlighted =
@@ -23,11 +24,11 @@ const HeaderTab: React.FC = () => {
 			className="navbar navbar-dark "
 			style={{ backgroundColor: "black" }}
 		>
-			<div className="container-fluid">
+			<div className="container-fluid" data-testid="menu-bar">
 				<div className="navbar-header">
-					<a className="navbar-brand" href="/">
+					<Link className="navbar-brand" to="/">
 						Arbeidsplassen
-					</a>
+					</Link>
 				</div>
 				<ul className="nav navbar-nav" style={{ display: "inline" }}>
 					<li
@@ -56,4 +57,4 @@ const HeaderTab: React.FC = () => {
 	);
 };
 
-export default HeaderTab;
+export default Menu;

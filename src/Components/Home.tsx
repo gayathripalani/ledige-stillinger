@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import AdScreen from "../AdScreen/AdScreen";
-import getAd from "../../controller/adController";
+import AdScreen from "./AdScreen";
+import getAd from "./fetchDetail";
 import "bootstrap/dist/css/bootstrap.css";
-import "./Home.css";
-import { AdProps } from "../types/App";
+import "./Design.css";
+import {AdProps} from "./Types";
 
 const Home: React.FC = () => {
 	const [ads, setAds] = useState<Array<AdProps["ad"]>>([]);
@@ -16,7 +16,6 @@ const Home: React.FC = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		console.log("executing getAds");
 		getAd(page.toString())
 			.then(results => {
 				setAds(results.content);
@@ -24,7 +23,6 @@ const Home: React.FC = () => {
 				setLast(results.last);
 			})
 			.catch(err => {
-				console.log(err);
 				history.push({ pathname: "/error", state:{error:err.toString()} });
 			});
 	}, [page,history]);
@@ -71,7 +69,6 @@ const Home: React.FC = () => {
 		<div>
 			{ads.length === 0 && <h2>No Data available</h2>}
 			{ads.map((ad: AdProps["ad"]) => {
-				console.log(ad);
 				return (
 					<div className="row ad"
 						style={{

@@ -1,74 +1,8 @@
 import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
-import "./AdDetailsScreen.css";
-
-interface AdProps {
-	ad: {
-		uuid: string;
-		published: string;
-		expires: string;
-		updated: string;
-		workLocations: WorkLocation[];
-		title: string;
-		description: string;
-		sourceurl: Object;
-		source: string;
-		applicationDue: string;
-		occupationCategories: OccupationCategories[];
-		jobtitle: Object | null;
-		link: string;
-		employer: Employer;
-		engagementtype: string;
-		extent: string;
-		starttime: string;
-		positioncount: string;
-		sector: string;
-	};
-}
-
-interface Ad {
-	uuid: string;
-	published: string;
-	expires: string;
-	updated: string;
-	workLocations: WorkLocation[];
-	title: string;
-	description: string;
-	sourceurl: Object;
-	source: string;
-	applicationDue: string;
-	occupationCategories: OccupationCategories[];
-	jobtitle: Object | null;
-	link: string;
-	employer: Employer;
-	engagementtype: string;
-	extent: string;
-	starttime: string;
-	positioncount: string;
-	sector: string;
-}
-
-interface WorkLocation {
-	country: string;
-	address: string;
-	city: string;
-	postalCode: string;
-	county: string;
-	municipal: string;
-}
-
-interface Employer {
-	name: string;
-	orgnr: string;
-	description: string;
-	homepage: string | null;
-}
-
-interface OccupationCategories {
-	level1: String;
-	level2: String;
-}
+import "./Design.css";
+import {Ad, AdProps} from "./Types";
 
 const AdDetailsScreen: React.FC = () => {
 	const { state } = useLocation<AdProps>();
@@ -111,7 +45,7 @@ const AdDetailsScreen: React.FC = () => {
 	};
 
 	return (
-		<div>
+		<div data-testid="detailPage">
 			<button className="btn btn-dark" onClick={backHandler}>
 				Back
 			</button>

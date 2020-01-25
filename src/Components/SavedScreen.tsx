@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AdScreen from "./AdScreen/AdScreen";
-import "./Home/Home.css";
-import { AdProps } from "./types/App";
+import AdScreen from "./AdScreen";
+import "./Design.css";
+import { AdProps } from "./Types";
 
 const SavedScreen: React.FC = () => {
 
@@ -37,6 +37,7 @@ const SavedScreen: React.FC = () => {
 							flex: 1,
 						}}
 						key={ad.uuid}
+						 data-testid={`savescreen_${ad.uuid}`}
 					>
 					<div className="col-xs-10 col-lg-10 col-sm-10 col-md-10">
 						<Link
