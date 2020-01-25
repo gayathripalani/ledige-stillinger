@@ -7,7 +7,7 @@ import SavedScreen from "./Components/savedScreen";
 import Home from "./Home";
 import HeaderTab from "./Components/headerTab";
 import ErrorScreen from "./Components/errorScreen";
-
+import PageNotFound from "./Components/PageNotFound";
 interface AdProps {
 	advertisement: {
 		uuid: string;
@@ -61,6 +61,7 @@ const App: React.FC = () => {
 					<Route exact path="/saved" component={SavedScreen}></Route>
 					<Route exact path="/error" component={ErrorScreen}></Route>
 					<Route exact path="/ads/:id" component={AdDetailsScreen}></Route>
+					<Route exact path="*" component={PageNotFound}></Route>
 				</Switch>
 			</div>
 		</Router>

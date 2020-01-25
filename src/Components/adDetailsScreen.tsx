@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useLocation, useHistory } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
+import "./adDetailsScreen.css";
 
 interface AdProps {
 	ad: {
@@ -14,7 +15,7 @@ interface AdProps {
 		sourceurl: Object;
 		source: string;
 		applicationDue: string;
-		occupationCategories: Object;
+		occupationCategories: OccupationCategories[];
 		jobtitle: Object | null;
 		link: string;
 		employer: Employer;
@@ -37,7 +38,7 @@ interface Ad {
 	sourceurl: Object;
 	source: string;
 	applicationDue: string;
-	occupationCategories: Object;
+	occupationCategories: OccupationCategories[];
 	jobtitle: Object | null;
 	link: string;
 	employer: Employer;
@@ -62,6 +63,11 @@ interface Employer {
 	orgnr: string;
 	description: string;
 	homepage: string | null;
+}
+
+interface OccupationCategories {
+	level1: String;
+	level2: String;
 }
 
 const AdDetailsScreen: React.FC = () => {
@@ -97,6 +103,14 @@ const AdDetailsScreen: React.FC = () => {
 		return false;
 	};
 
+	const getButtonText = () => {
+		if (typeof saved === "string") {
+			if (saved.indexOf(ad.uuid) == -1) return "Save";
+			else return "Saved";
+		}
+		return "Save";
+	};
+
 	return (
 		<div>
 			<button className="btn btn-dark" onClick={backHandler}>
@@ -104,26 +118,53 @@ const AdDetailsScreen: React.FC = () => {
 			</button>
 			<button
 				className="btn btn-success"
+				style={{ marginLeft: "88%" }}
 				onClick={saveHandler}
 				disabled={getButtonState()}
 			>
-				Save
+				{getButtonText()}
 			</button>
+			<br />
 			<br />
 			<label>Job Description: </label>
 			<div dangerouslySetInnerHTML={{ __html: ad.description }} />
 			<label>Employer: </label>
 			{ad.employer.name}
-			<label>Organization: </label>
-			{ad.employer.orgnr}
-			<label>Description: </label>
-			<div dangerouslySetInnerHTML={{ __html: ad.employer.description }} />
+			<br />
+			{ad.employer.orgnr && (
+				<>
+					<label>Organization: </label>
+					{ad.employer.orgnr}
+				</>
+			)}
+			<br />
+			{ad.employer.description && (
+				<>
+					<label>Description: </label>
+					<div dangerouslySetInnerHTML={{ __html: ad.employer.description }} />
+				</>
+			)}
 			{ad.employer.homepage && (
 				<>
 					<label>Website Homepage Link: </label>
 					<a href={ad.employer.homepage}>{ad.employer.homepage}</a>
 				</>
 			)}
+			{ad.occupationCategories.length > 0 && (
+				<>
+					<label>Occupation Levels: </label>
+					{ad.occupationCategories[0].level1} ,{" "}
+					{ad.occupationCategories[0].level2}
+				</>
+			)}
+			<br />
+			{ad.applicationDue && (
+				<>
+					<label>Application Due Date: </label>
+					{ad.applicationDue}
+				</>
+			)}
+			<br />
 		</div>
 	);
 };

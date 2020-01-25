@@ -9,19 +9,25 @@ const HeaderTab: React.FC = () => {
 
 	let homehightlighted =
 		history.location.pathname === "/ads" || history.location.pathname === "/"
-			? "black"
-			: "white";
+			? "#A9A9A9"
+			: "black";
 	let savedhightlighted =
-		history.location.pathname === "/saved" ? "black" : "white";
+		history.location.pathname === "/saved" ? "#A9A9A9" : "black";
+	let homehightlightedBackground =
+		history.location.pathname === "/ads" || history.location.pathname === "/"
+			? "black"
+			: "#A9A9A9";
+	let savedhightlightedBackground =
+		history.location.pathname === "/saved" ? "black" : "#A9A9A9";
 
 	return (
 		<nav
-			className="navbar navbar-dark bg-primary"
-			style={{ backgroundColor: "#e3f2fd" }}
+			className="navbar navbar-dark "
+			style={{ backgroundColor: "#D3D3D3" }}
 		>
 			<div className="container-fluid">
 				<div className="navbar-header">
-					<a className="navbar-brand" href="#">
+					<a className="navbar-brand" href="/">
 						Arbeidsplassen
 					</a>
 				</div>
@@ -30,7 +36,8 @@ const HeaderTab: React.FC = () => {
 						style={{
 							display: "inline",
 							padding: "10%",
-							color: homehightlighted
+							color: homehightlighted,
+							backgroundColor: homehightlightedBackground
 						}}
 					>
 						<a onClick={() => history.push("/ads")}>Home</a>
@@ -39,7 +46,8 @@ const HeaderTab: React.FC = () => {
 						style={{
 							display: "inline",
 							padding: "10%",
-							color: savedhightlighted
+							color: savedhightlighted,
+							backgroundColor: savedhightlightedBackground
 						}}
 					>
 						<a onClick={() => history.push("/saved")}>Saved</a>

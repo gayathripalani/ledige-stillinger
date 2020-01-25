@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import AdScreen from "./Components/adScreen";
 import getAd from "./controller/adController";
 import "bootstrap/dist/css/bootstrap.css";
+import "./Home.css";
 
 interface AdProps {
 	advertisement: {
@@ -17,7 +18,7 @@ interface AdProps {
 		sourceurl: Object;
 		source: string;
 		applicationDue: string;
-		occupationCategories: Object;
+		occupationCategories: OccupationCategories[];
 		jobtitle: Object | null;
 		link: string;
 		employer: Employer[];
@@ -45,6 +46,11 @@ interface Employer {
 	homepage: string | null;
 }
 
+interface OccupationCategories {
+	level1: String;
+	level2: String;
+}
+
 const Home: React.FC = () => {
 	const [ads, setAds] = useState<Array<AdProps["advertisement"]>>([]);
 	const [page, setPage] = useState<number>(0);
@@ -63,7 +69,7 @@ const Home: React.FC = () => {
 			})
 			.catch(err => {
 				console.log(err);
-				history.replace({ pathname: "/error", state: err });
+				history.push({ pathname: "/error", state:{error:err.toString()} });
 			});
 	}, [page]);
 
@@ -104,13 +110,21 @@ const Home: React.FC = () => {
 		return false;
 	};
 
+	const getButtonText = (ad: AdProps["advertisement"]) => {
+		if (typeof saved === "string") {
+			if (saved.indexOf(ad.uuid) == -1) return "Save";
+			else return "Saved";
+		}
+		return "Save";
+	};
+
 	return (
 		<div>
 			{ads.length === 0 && <h2>No Data available</h2>}
 			{ads.map((ad: AdProps["advertisement"]) => {
 				console.log(ad);
 				return (
-					<div
+					<div className="row ad"
 						style={{
 							border: "2px solid #000",
 							borderRadius: "5px",
@@ -118,29 +132,29 @@ const Home: React.FC = () => {
 							margin: "0.5%",
 							flex: 1
 						}}
+						key={ad.uuid}
 					>
+          <div className="col-xs-10 col-lg-10 col-sm-10 col-md-10">
 						<Link
 							style={{ textDecoration: "none" }}
 							to={{ pathname: `/ads/${ad.uuid}`, state: { ad: ad } }}
 						>
-							<AdScreen key={ad.uuid} advertisement={ad} />
+							<AdScreen advertisement={ad} />
+
 						</Link>
+						</div>
+						<div className="col-xs-1 col-lg-1 col-sm-1 col-md-1">
 						<button
-							className="btn btn-primary"
-							style={{ margin: "1%" }}
-							onClick={() => openHandler(ad)}
-						>
-							Open
-						</button>
-						<button
-							className="btn btn-success"
-							style={{ margin: "1%" }}
-							onClick={() => saveHandler(ad)}
-							disabled={getButtonState(ad)}
-						>
-							Save
-						</button>
+						className="btn btn-success"
+						style={{ marginLeft: "85%",marginTop:"50%"}}
+						onClick={() => saveHandler(ad)}
+						disabled={getButtonState(ad)}
+					>
+						{getButtonText(ad)}
+					</button>
 					</div>
+       </div>
+
 				);
 			})}
 			<br />

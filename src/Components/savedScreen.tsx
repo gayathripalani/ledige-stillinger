@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import AdScreen from "./adScreen";
+import "../Home.css";
 
 interface AdProps {
 	advertisement: {
@@ -15,7 +16,7 @@ interface AdProps {
 		sourceurl: Object;
 		source: string;
 		applicationDue: string;
-		occupationCategories: Object;
+		occupationCategories: OccupationCategories[];
 		jobtitle: Object | null;
 		link: string;
 		employer: Employer[];
@@ -43,6 +44,11 @@ interface Employer {
 	homepage: string | null;
 }
 
+interface OccupationCategories {
+	level1: String;
+	level2: String;
+}
+
 const SavedScreen: React.FC = () => {
 	const history = useHistory();
 
@@ -62,30 +68,46 @@ const SavedScreen: React.FC = () => {
 		});
 	};
 
+	const removeHandler = (uuid: string) => {
+		let filteredAds = ads.filter(saved => {
+			return saved.uuid != uuid;
+		});
+		localStorage.setItem("savedAd", JSON.stringify(filteredAds));
+		setAds(filteredAds);
+	};
+
 	return (
 		<>
 			{ads.length === 0 && <h2>No Saved Ads</h2>}
 			{ads.map((ad: AdProps["advertisement"]) => {
-				console.log(ad);
 				return (
-					<div
+					<div className="row ad"
 						style={{
 							border: "2px solid #000",
 							borderRadius: "5px",
 							padding: "2% 1%",
 							margin: "0.5%",
-							flex: 1
+							flex: 1,
 						}}
+						key={ad.uuid}
 					>
+					<div className="col-xs-10 col-lg-10 col-sm-10 col-md-10">
 						<Link
 							style={{ textDecoration: "none" }}
 							to={{ pathname: `/ads/${ad.uuid}`, state: { ad: ad } }}
 						>
-							<AdScreen key={ad.uuid} advertisement={ad} />
+							<AdScreen advertisement={ad} />
 						</Link>
-						<button className="btn btn-primary" onClick={() => openHandler(ad)}>
-							Open
+						</div>
+						<div className="col-xs-1 col-lg-1 col-sm-1 col-md-1">
+						<button
+							className="btn btn-danger"
+							style={{ marginLeft: "85%",marginTop:"50%"}}
+							onClick={() => removeHandler(ad.uuid)}
+						>
+							Remove
 						</button>
+						</div>
 					</div>
 				);
 			})}

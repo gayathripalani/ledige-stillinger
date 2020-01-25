@@ -3,7 +3,14 @@
 	flex-direction: column;
 }
 
-p,
-h3 {
+p{
+	color:black;
+	padding-right:30px;
+}
+
+div {
 	color: black;
+}
+a{
+	padding:15px;
 }

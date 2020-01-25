@@ -1,4 +1,5 @@
 const getAd = (page: string) => {
+
 	let ads = fetch(
 		`https://arbeidsplassen.nav.no/public-feed/api/v1/ads?size=10&page=${page}`,
 		{
@@ -14,9 +15,15 @@ const getAd = (page: string) => {
 		.catch(err => {
 			console.log(err);
 			throw err;
-		});
+});
 	console.log(ads);
+	console.log(typeof ads);
+
 	return ads;
+
+
 };
+
+
 
 export default getAd;

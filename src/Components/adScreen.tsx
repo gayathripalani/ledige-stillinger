@@ -13,7 +13,7 @@ interface AdProps {
 		sourceurl: Object;
 		source: string;
 		applicationDue: string;
-		occupationCategories: Object;
+		occupationCategories: OccupationCategories[];
 		jobtitle: Object | null;
 		link: string;
 		employer: Employer[];
@@ -41,25 +41,23 @@ interface Employer {
 	homepage: string | null;
 }
 
+interface OccupationCategories {
+	level1: String;
+	level2: String;
+}
+
 const AdScreen: React.FC<AdProps> = ({ advertisement }) => {
-	console.log(advertisement);
-
-	console.log("in adscreen");
-
 	return (
-		<div>
-			<h3>Date: </h3>
-			<p>{advertisement.published}</p>
-			{advertisement.jobtitle != null && (
-				<>
-					<h3>Job Title: </h3>
-					<p>{advertisement.jobtitle}</p>
-				</>
-			)}
-			<h3>ad Title: </h3>
-			<p>{advertisement.title}</p>
-			{/* <button onClick={openHandler}>Open</button>
-			<button>Save</button> */}
+		<div className="row">
+		<div className="col-xs-2 col-lg-2 col-sm-2 col-md-2">
+			{(advertisement.published.slice(0,10)).split("-").reverse().join(".")}
+    </div>
+		<div className="col-xs-3 col-lg-3 col-sm-3 col-md-3">
+			{advertisement.jobtitle?advertisement.jobtitle:"-"}
+    </div>
+		<div className="col-xs-5 col-lg-5 col-sm-5 col-md-5">
+			{advertisement.title?advertisement.title:"-"}
+     </div>
 		</div>
 		// {console.log(ads.first)}
 	);
