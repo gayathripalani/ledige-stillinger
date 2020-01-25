@@ -1,6 +1,6 @@
 import React from 'react';
 import {cleanup, render} from '@testing-library/react';
-import App from "../Components/App";
+import App from "../component/App";
 
 describe("App", () => {
     afterEach(cleanup)

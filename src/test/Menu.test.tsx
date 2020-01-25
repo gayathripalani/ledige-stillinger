@@ -1,6 +1,6 @@
 import React from 'react';
 import {cleanup, render} from '@testing-library/react';
-import Menu from "../Components/Menu";
+import Menu from "../component/Menu";
 import {MemoryRouter} from "react-router";
 
 describe("Menu", () => {

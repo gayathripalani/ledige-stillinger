@@ -1,6 +1,6 @@
 import React from 'react';
 import {cleanup, render} from '@testing-library/react';
-import SavedScreen from "../Components/SavedScreen";
+import SavedScreen from "../component/SavedScreen";
 
 describe("SavedScreenTest", () => {
     beforeEach(() => {
