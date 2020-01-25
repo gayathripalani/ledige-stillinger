@@ -2,7 +2,7 @@ import React from 'react';
 import {cleanup, render} from '@testing-library/react';
 import AdDetailsScreen from "../Components/AdDetailsScreen";
 import {MemoryRouter, Route} from "react-router";
-import {ad} from "../Components/Constants";
+import {ad} from "../common/Constants";
 
 describe("AdDetailScreen", () => {
     beforeEach(() => {

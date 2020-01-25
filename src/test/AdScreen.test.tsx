@@ -1,7 +1,7 @@
 import React from 'react';
 import {cleanup, render} from '@testing-library/react';
 import AdScreen from "../Components/AdScreen";
-import {ad, ad_with_missing_data} from "../Components/Constants";
+import {ad, ad_with_missing_data} from "../common/Constants";
 
 describe("AdScreen", () => {
 

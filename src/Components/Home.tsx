@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import AdScreen from "./AdScreen";
-import getAd from "./fetchDetail";
+import getAd from "../common/FetchDetail";
 import "bootstrap/dist/css/bootstrap.css";
-import "./Design.css";
-import {AdProps} from "./Types";
+import "../common/Design.css";
+import {AdProps} from "../common/Types";
 
 const Home: React.FC = () => {
 	const [ads, setAds] = useState<Array<AdProps["ad"]>>([]);

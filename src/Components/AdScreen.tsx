@@ -1,6 +1,6 @@
 import React from "react";
-import "./Design.css";
-import {AdProps} from "./Types";
+import "../common/Design.css";
+import {AdProps} from "../common/Types";
 
 const AdScreen: React.FC<AdProps> = ({ad}) => {
     return (

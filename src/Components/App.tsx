@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./Design.css";
+import "../common/Design.css";
 
 import AdDetailsScreen from "./AdDetailsScreen";
 import SavedScreen from "./SavedScreen";

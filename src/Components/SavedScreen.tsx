@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdScreen from "./AdScreen";
-import "./Design.css";
-import { AdProps } from "./Types";
+import "../common/Design.css";
+import { AdProps } from "../common/Types";
 
 const SavedScreen: React.FC = () => {
 

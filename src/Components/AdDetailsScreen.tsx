@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
-import "./Design.css";
-import {Ad, AdProps} from "./Types";
+import "../common/Design.css";
+import {Ad, AdProps} from "../common/Types";
 
 const AdDetailsScreen: React.FC = () => {
 	const { state } = useLocation<AdProps>();
