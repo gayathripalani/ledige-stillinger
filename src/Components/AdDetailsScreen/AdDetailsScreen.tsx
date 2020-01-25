@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
-import "./adDetailsScreen.css";
+import "./AdDetailsScreen.css";
 
 interface AdProps {
 	ad: {

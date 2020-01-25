@@ -1,58 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import AdScreen from "./Components/adScreen";
-import getAd from "./controller/adController";
+import AdScreen from "../AdScreen/AdScreen";
+import getAd from "../../controller/adController";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Home.css";
-
-interface AdProps {
-	advertisement: {
-		uuid: string;
-		published: string;
-		expires: string;
-		updated: string;
-		workLocations: WorkLocation[];
-		title: string;
-		description: string;
-		sourceurl: Object;
-		source: string;
-		applicationDue: string;
-		occupationCategories: OccupationCategories[];
-		jobtitle: Object | null;
-		link: string;
-		employer: Employer[];
-		engagementtype: string;
-		extent: string;
-		starttime: string;
-		positioncount: string;
-		sector: string;
-	};
-}
-
-interface WorkLocation {
-	country: string;
-	address: string;
-	city: string;
-	postalCode: string;
-	county: string;
-	municipal: string;
-}
-
-interface Employer {
-	name: string;
-	orgnr: string;
-	description: string;
-	homepage: string | null;
-}
-
-interface OccupationCategories {
-	level1: String;
-	level2: String;
-}
+import { AdProps } from "../types/App";
 
 const Home: React.FC = () => {
-	const [ads, setAds] = useState<Array<AdProps["advertisement"]>>([]);
+	const [ads, setAds] = useState<Array<AdProps["ad"]>>([]);
 	const [page, setPage] = useState<number>(0);
 	const [first, setFirst] = useState<boolean>();
 	const [last, setLast] = useState<boolean>();
@@ -81,10 +37,10 @@ const Home: React.FC = () => {
 		setPage(page - 1);
 	};
 
-	const saveHandler = (ad: AdProps["advertisement"]) => {
+	const saveHandler = (ad: AdProps["ad"]) => {
 		let savedAd = localStorage.getItem("savedAd");
 		if (typeof savedAd === "string" && savedAd.indexOf(ad.uuid) === -1) {
-			let savedAdArr: Array<AdProps["advertisement"]> = JSON.parse(savedAd);
+			let savedAdArr: Array<AdProps["ad"]> = JSON.parse(savedAd);
 			savedAdArr.push(ad);
 			localStorage.setItem("savedAd", JSON.stringify(savedAdArr));
 		} else {
@@ -95,7 +51,7 @@ const Home: React.FC = () => {
 		setSaved(localStorage.getItem("savedAd"));
 	};
 
-	const getButtonState = (ad: AdProps["advertisement"]) => {
+	const getButtonState = (ad: AdProps["ad"]) => {
 		if (typeof saved === "string") {
 			if (saved.indexOf(ad.uuid) === -1) return false;
 			else return true;
@@ -103,7 +59,7 @@ const Home: React.FC = () => {
 		return false;
 	};
 
-	const getButtonText = (ad: AdProps["advertisement"]) => {
+	const getButtonText = (ad: AdProps["ad"]) => {
 		if (typeof saved === "string") {
 			if (saved.indexOf(ad.uuid) === -1) return "Save";
 			else return "Saved";
@@ -114,7 +70,7 @@ const Home: React.FC = () => {
 	return (
 		<div>
 			{ads.length === 0 && <h2>No Data available</h2>}
-			{ads.map((ad: AdProps["advertisement"]) => {
+			{ads.map((ad: AdProps["ad"]) => {
 				console.log(ad);
 				return (
 					<div className="row ad"
@@ -132,7 +88,7 @@ const Home: React.FC = () => {
 							style={{ textDecoration: "none" }}
 							to={{ pathname: `/ads/${ad.uuid}`, state: { ad: ad } }}
 						>
-							<AdScreen advertisement={ad} />
+							<AdScreen ad={ad} />
 
 						</Link>
 						</div>

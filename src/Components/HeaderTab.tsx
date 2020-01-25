@@ -4,8 +4,6 @@ import "bootstrap/dist/css/bootstrap.css";
 
 const HeaderTab: React.FC = () => {
 	const history = useHistory();
-	console.log("history");
-	console.log(history);
 
 	let homehightlighted =
 		history.location.pathname === "/ads" || history.location.pathname === "/"
