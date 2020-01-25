@@ -71,7 +71,7 @@ const Home: React.FC = () => {
 				console.log(err);
 				history.push({ pathname: "/error", state:{error:err.toString()} });
 			});
-	}, [page]);
+	}, [page,history]);
 
 	const nextHandler = () => {
 		setPage(page + 1);
@@ -81,16 +81,9 @@ const Home: React.FC = () => {
 		setPage(page - 1);
 	};
 
-	const openHandler = (advertisement: AdProps["advertisement"]) => {
-		history.push({
-			pathname: `ads/${advertisement.uuid}`,
-			state: { ad: advertisement }
-		});
-	};
-
 	const saveHandler = (ad: AdProps["advertisement"]) => {
 		let savedAd = localStorage.getItem("savedAd");
-		if (typeof savedAd === "string" && savedAd.indexOf(ad.uuid) == -1) {
+		if (typeof savedAd === "string" && savedAd.indexOf(ad.uuid) === -1) {
 			let savedAdArr: Array<AdProps["advertisement"]> = JSON.parse(savedAd);
 			savedAdArr.push(ad);
 			localStorage.setItem("savedAd", JSON.stringify(savedAdArr));
@@ -104,7 +97,7 @@ const Home: React.FC = () => {
 
 	const getButtonState = (ad: AdProps["advertisement"]) => {
 		if (typeof saved === "string") {
-			if (saved.indexOf(ad.uuid) == -1) return false;
+			if (saved.indexOf(ad.uuid) === -1) return false;
 			else return true;
 		}
 		return false;
@@ -112,7 +105,7 @@ const Home: React.FC = () => {
 
 	const getButtonText = (ad: AdProps["advertisement"]) => {
 		if (typeof saved === "string") {
-			if (saved.indexOf(ad.uuid) == -1) return "Save";
+			if (saved.indexOf(ad.uuid) === -1) return "Save";
 			else return "Saved";
 		}
 		return "Save";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useLocation, useHistory } from "react-router";
+import { useLocation, useHistory } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
 import "./adDetailsScreen.css";
 
@@ -71,10 +71,9 @@ interface OccupationCategories {
 }
 
 const AdDetailsScreen: React.FC = () => {
-	const { id } = useParams();
 	const { state } = useLocation<AdProps>();
 	const history = useHistory();
-	const [ad, setAd] = useState<Ad>(state.ad);
+	const [ad] = useState<Ad>(state.ad);
 	const [saved, setSaved] = useState(localStorage.getItem("savedAd"));
 
 	const backHandler = () => {
@@ -83,7 +82,7 @@ const AdDetailsScreen: React.FC = () => {
 
 	const saveHandler = () => {
 		let savedAd = localStorage.getItem("savedAd");
-		if (typeof savedAd === "string" && savedAd.indexOf(ad.uuid) == -1) {
+		if (typeof savedAd === "string" && savedAd.indexOf(ad.uuid) === -1) {
 			let savedAdArr: Array<Ad> = JSON.parse(savedAd);
 			savedAdArr.push(ad);
 			localStorage.setItem("savedAd", JSON.stringify(savedAdArr));
@@ -97,7 +96,7 @@ const AdDetailsScreen: React.FC = () => {
 
 	const getButtonState = () => {
 		if (typeof saved === "string") {
-			if (saved.indexOf(ad.uuid) == -1) return false;
+			if (saved.indexOf(ad.uuid) === -1) return false;
 			else return true;
 		}
 		return false;
@@ -105,7 +104,7 @@ const AdDetailsScreen: React.FC = () => {
 
 	const getButtonText = () => {
 		if (typeof saved === "string") {
-			if (saved.indexOf(ad.uuid) == -1) return "Save";
+			if (saved.indexOf(ad.uuid) === -1) return "Save";
 			else return "Saved";
 		}
 		return "Save";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -23,7 +23,7 @@ const HeaderTab: React.FC = () => {
 	return (
 		<nav
 			className="navbar navbar-dark "
-			style={{ backgroundColor: "#D3D3D3" }}
+			style={{ backgroundColor: "black" }}
 		>
 			<div className="container-fluid">
 				<div className="navbar-header">
@@ -45,7 +45,7 @@ const HeaderTab: React.FC = () => {
 					<li
 						style={{
 							display: "inline",
-							padding: "10%",
+							padding: "10% 3% 10%",
 							color: savedhightlighted,
 							backgroundColor: savedhightlightedBackground
 						}}

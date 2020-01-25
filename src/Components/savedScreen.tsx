@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
 import AdScreen from "./adScreen";
 import "../Home.css";
 
@@ -50,7 +49,6 @@ interface OccupationCategories {
 }
 
 const SavedScreen: React.FC = () => {
-	const history = useHistory();
 
 	const [ads, setAds] = useState<Array<AdProps["advertisement"]>>([]);
 
@@ -61,16 +59,9 @@ const SavedScreen: React.FC = () => {
 		}
 	}, []);
 
-	const openHandler = (advertisement: AdProps["advertisement"]) => {
-		history.push({
-			pathname: `ads/${advertisement.uuid}`,
-			state: { ad: advertisement }
-		});
-	};
-
 	const removeHandler = (uuid: string) => {
 		let filteredAds = ads.filter(saved => {
-			return saved.uuid != uuid;
+			return saved.uuid !== uuid;
 		});
 		localStorage.setItem("savedAd", JSON.stringify(filteredAds));
 		setAds(filteredAds);
