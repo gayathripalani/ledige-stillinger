@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The app / website that downloads
+job postings from NAV's REST API and showing them to the user. The ads are sourced from NAVs
+website https://arbeidsplassen.nav.no/
+
 ## Available Scripts
 
 In the project directory, you can run:
