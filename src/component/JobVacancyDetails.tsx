@@ -51,7 +51,7 @@ const JobVacancyDetails: React.FC = () => {
 			</button>
 			<button
 				className="btn btn-success"
-				style={{ marginLeft: "88%" }}
+				style={{ marginLeft: "90%" }}
 				onClick={saveHandler}
 				disabled={getButtonState()}
 			>
