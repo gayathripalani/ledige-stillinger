@@ -71,14 +71,7 @@ const Home: React.FC = () => {
 			<div style={{alignItems:"center"}}> {ads.length === 0 && <SpinnerIcon />}</div>
 			{ads.map((ad: AdProps["ad"]) => {
 				return (
-					<div className="row ad"
-						style={{
-							border: "2px solid #000",
-							borderRadius: "5px",
-							padding: "2% 1%",
-							margin: "0.5%",
-							flex: 1
-						}}
+					<div className="row ad vacancy-list"
 						key={ad.uuid}
 					>
           <div className="col-xs-10 col-lg-10 col-sm-10 col-md-10">

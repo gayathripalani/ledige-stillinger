@@ -4,7 +4,7 @@ import Spinner from './Spinner';
 const SpinnerIcon = (props:any) => {
 
   return (
-    <div className="Spinner"
+    <div className="Spinner" data-testid="spinner"
     style={{alignItems:"center"}}>
       <Spinner />
       </div>

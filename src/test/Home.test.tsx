@@ -9,11 +9,11 @@ describe("Home", () => {
     afterEach(cleanup)
 
     it("should render component with no data", () => {
-        const {getByText} = render(
+        const {getByTestId} = render(
             <MemoryRouter>
                 <Home/>
             </MemoryRouter>)
-        expect(getByText('No Data available')).toBeInTheDocument
+        expect(getByTestId('spinner')).toBeInTheDocument
     })
 
 })

@@ -28,14 +28,7 @@ const SavedJobs: React.FC = () => {
 			{ads.length === 0 && <h2>No Saved Ads</h2>}
 			{ads.map((ad: AdProps["ad"]) => {
 				return (
-					<div className="row ad"
-						style={{
-							border: "2px solid #000",
-							borderRadius: "5px",
-							padding: "2% 1%",
-							margin: "0.5%",
-							flex: 1,
-						}}
+					<div className="row ad vacancy-list"
 						key={ad.uuid}
 						 data-testid={`savescreen_${ad.uuid}`}
 					>
@@ -49,8 +42,7 @@ const SavedJobs: React.FC = () => {
 						</div>
 						<div className="col-xs-1 col-lg-1 col-sm-1 col-md-1">
 						<button
-							className="btn btn-danger"
-							style={{ marginLeft: "85%",marginTop:"50%"}}
+							className="btn btn-danger remove"
 							onClick={() => removeHandler(ad.uuid)}
 						>
 							Remove

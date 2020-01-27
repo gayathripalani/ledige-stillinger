@@ -34,7 +34,7 @@ a {
 .btn-success {
 	&.save {
 		margin-left: 85%;
-		margin-top: 50%;
+		margin-top: 25%;
 	}
 }
 
@@ -42,4 +42,20 @@ a {
 	&.next {
 		margin-left: 92%;
 	}
+}
+
+.btn-danger {
+  &.remove {
+    margin-left: 85%;
+    margin-top: 20%;
+  }
+}
+
+.row {
+   &.vacancy-list {
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 0.5%;
+    flex: 1;
+   }
 }

@@ -1,19 +1,19 @@
 import React from 'react';
 import {cleanup, render} from '@testing-library/react';
-import AdScreen from "../component/AdScreen";
+import JobVacancyList from "../component/JobVacancyList";
 import {ad, ad_with_missing_data} from "../common/Constants";
 
-describe("AdScreen", () => {
+describe("JobVacancyList", () => {
 
     afterEach(cleanup)
 
     it("should render component", () => {
-        const {getByTestId} = render(<AdScreen ad={ad}/>)
+        const {getByTestId} = render(<JobVacancyList ad={ad}/>)
         expect(getByTestId('ad-item')).toBeInTheDocument()
     })
 
     it("should contain date,subject and description", () => {
-        const {getByTestId, queryByText} = render(<AdScreen ad={ad}/>)
+        const {getByTestId, queryByText} = render(<JobVacancyList ad={ad}/>)
 
         expect(getByTestId('adDate')).toBeInTheDocument()
         expect(getByTestId('adJobTitle')).toBeInTheDocument()
@@ -25,7 +25,7 @@ describe("AdScreen", () => {
     })
 
     it("should show default for title and jobtitle when empty", () => {
-        const {getByTestId} = render(<AdScreen ad={ad_with_missing_data}/>)
+        const {getByTestId} = render(<JobVacancyList ad={ad_with_missing_data}/>)
 
         expect(getByTestId('adDate')).toHaveTextContent('25.01.2020')
         expect(getByTestId('adJobTitle')).toHaveTextContent('-')

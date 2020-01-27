@@ -1,10 +1,10 @@
 import React from 'react';
 import {cleanup, queryByText, render} from '@testing-library/react';
-import AdDetailsScreen from "../component/AdDetailsScreen";
+import JobVacancyDetails from "../component/JobVacancyDetails";
 import {MemoryRouter, Route} from "react-router";
 import {ad} from "../common/Constants";
 
-describe("AdDetailScreen", () => {
+describe("JobVacancyDetails", () => {
     afterEach(cleanup)
 
     const renderComponent = (id: string) => render(
@@ -12,7 +12,7 @@ describe("AdDetailScreen", () => {
             pathname: `/ads/${id}`,
             state: { ad: ad }
         }]}>
-            <AdDetailsScreen/>
+            <JobVacancyDetails/>
         </MemoryRouter>
     )
 
