@@ -69,6 +69,7 @@ const Home: React.FC = () => {
 	return (
 		<div>
 			<div style={{alignItems:"center"}}> {ads.length === 0 && <SpinnerIcon />}</div>
+			{ads.length!== 0 && <h3 style={{textAlign:"center"}}>List of job vacancies</h3>}
 			{ads.map((ad: AdProps["ad"]) => {
 				return (
 					<div className="row ad vacancy-list"
@@ -97,8 +98,8 @@ const Home: React.FC = () => {
 				);
 			})}
 			<br />
-			{ ads.length!=0 && <button className="btn btn-primary" onClick={prevHandler} disabled={first}>Prev</button> }
-			{ ads.length!=0 && <button className="btn btn-primary next" onClick={nextHandler} disabled={last}>Next</button> }
+			{ ads.length !== 0 && <button className="btn btn-primary" onClick={prevHandler} disabled={first}>Prev</button> }
+			{ ads.length !== 0 && <button className="btn btn-primary next" onClick={nextHandler} disabled={last}>Next</button> }
 		</div>
 	);
 };

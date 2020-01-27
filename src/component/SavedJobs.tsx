@@ -25,6 +25,7 @@ const SavedJobs: React.FC = () => {
 
 	return (
 		<>
+		  {ads.length !== 0 && <h3 style={{textAlign:"center"}}>Saved Ads</h3>}
 			{ads.length === 0 && <h2>No Saved Ads</h2>}
 			{ads.map((ad: AdProps["ad"]) => {
 				return (

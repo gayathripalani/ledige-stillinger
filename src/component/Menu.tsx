@@ -5,19 +5,8 @@ import {Link} from "react-router-dom";
 
 const Menu: React.FC = () => {
 	const history = useHistory();
-
-	let homehightlighted =
-		history.location.pathname === "/ads" || history.location.pathname === "/"
-			? "#A9A9A9"
-			: "black";
-	let savedhightlighted =
-		history.location.pathname === "/saved" ? "#A9A9A9" : "black";
-	let homehightlightedBackground =
-		history.location.pathname === "/ads" || history.location.pathname === "/"
-			? "black"
-			: "#A9A9A9";
-	let savedhightlightedBackground =
-		history.location.pathname === "/saved" ? "black" : "#A9A9A9";
+	let disabled =
+		history.location.pathname === "/saved" ? true : false;
 
 	return (
 		<nav
@@ -30,28 +19,7 @@ const Menu: React.FC = () => {
 						Ledige Stillinger
 					</Link>
 				</div>
-				<ul className="nav navbar-nav" style={{ display: "inline" }}>
-					<li
-						style={{
-							display: "inline",
-							padding: "10%",
-							color: homehightlighted,
-							backgroundColor: homehightlightedBackground
-						}}
-					>
-						<a onClick={() => history.push("/ads")}>Home</a>
-					</li>
-					<li
-						style={{
-							display: "inline",
-							padding: "10% 3% 10%",
-							color: savedhightlighted,
-							backgroundColor: savedhightlightedBackground
-						}}
-					>
-						<a onClick={() => history.push("/saved")}>Saved</a>
-					</li>
-				</ul>
+        <button className="btn btn-primary" disabled={disabled} onClick={() => history.push("/saved")}>View Saved Ads</button>
 			</div>
 		</nav>
 	);
