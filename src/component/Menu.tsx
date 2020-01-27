@@ -27,7 +27,7 @@ const Menu: React.FC = () => {
 			<div className="container-fluid" data-testid="menu-bar">
 				<div className="navbar-header">
 					<Link className="navbar-brand" to="/">
-						Arbeidsplassen
+						Ledige Stillinger
 					</Link>
 				</div>
 				<ul className="nav navbar-nav" style={{ display: "inline" }}>

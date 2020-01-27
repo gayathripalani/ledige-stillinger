@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AdScreen from "./AdScreen";
-import "../common/Design.css";
+import JobVacancyList from "./JobVacancyList";
+import "../common/Design.scss";
 import { AdProps } from "../common/Types";
 
-const SavedScreen: React.FC = () => {
+const SavedJobs: React.FC = () => {
 
 	const [ads, setAds] = useState<Array<AdProps["ad"]>>([]);
 
@@ -44,7 +44,7 @@ const SavedScreen: React.FC = () => {
 							style={{ textDecoration: "none" }}
 							to={{ pathname: `/ads/${ad.uuid}`, state: { ad: ad } }}
 						>
-							<AdScreen ad={ad} />
+							<JobVacancyList ad={ad} />
 						</Link>
 						</div>
 						<div className="col-xs-1 col-lg-1 col-sm-1 col-md-1">
@@ -63,4 +63,4 @@ const SavedScreen: React.FC = () => {
 	);
 };
 
-export default SavedScreen;
+export default SavedJobs;

@@ -26,6 +26,20 @@ p{
 div {
 	color: black;
 }
-a{
+
+a {
 	padding:15px;
+}
+
+.btn-success {
+	&.save {
+		margin-left: 85%;
+		margin-top: 50%;
+	}
+}
+
+.btn-primary {
+	&.next {
+		margin-left: 92%;
+	}
 }

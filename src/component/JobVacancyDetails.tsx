@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
-import "../common/Design.css";
-import {Ad, AdProps} from "../common/Types";
+import "../common/Design.scss";
+import { Ad, AdProps } from "../common/Types";
 
-const AdDetailsScreen: React.FC = () => {
+const JobVacancyDetails: React.FC = () => {
 	const { state } = useLocation<AdProps>();
 	const history = useHistory();
 	const [ad] = useState<Ad>(state.ad);
@@ -102,4 +102,4 @@ const AdDetailsScreen: React.FC = () => {
 	);
 };
 
-export default AdDetailsScreen;
+export default JobVacancyDetails;

@@ -1,8 +1,8 @@
 import React from "react";
-import "../common/Design.css";
-import {AdProps} from "../common/Types";
+import "../common/Design.scss";
+import { AdProps } from "../common/Types";
 
-const AdScreen: React.FC<AdProps> = ({ad}) => {
+const JobVacancyList: React.FC<AdProps> = ({ad}) => {
     return (
         <div className="row" data-testid="ad-item">
             <div className="col-xs-2 col-lg-2 col-sm-2 col-md-2" data-testid="adDate">
@@ -18,4 +18,4 @@ const AdScreen: React.FC<AdProps> = ({ad}) => {
     );
 };
 
-export default AdScreen;
+export default JobVacancyList;

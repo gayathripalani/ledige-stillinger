@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import AdScreen from "./AdScreen";
+import JobVacancyList from "./JobVacancyList";
 import getAd from "../common/FetchDetail";
 import "bootstrap/dist/css/bootstrap.css";
-import "../common/Design.css";
-import {AdProps} from "../common/Types";
+import "../common/Design.scss";
+import { AdProps } from "../common/Types";
+import SpinnerIcon from "./SpinnerIcon"
 
 const Home: React.FC = () => {
 	const [ads, setAds] = useState<Array<AdProps["ad"]>>([]);
@@ -67,7 +68,7 @@ const Home: React.FC = () => {
 
 	return (
 		<div>
-			{ads.length === 0 && <h2>No Data available</h2>}
+			<div style={{alignItems:"center"}}> {ads.length === 0 && <SpinnerIcon />}</div>
 			{ads.map((ad: AdProps["ad"]) => {
 				return (
 					<div className="row ad"
@@ -85,14 +86,13 @@ const Home: React.FC = () => {
 							style={{ textDecoration: "none" }}
 							to={{ pathname: `/ads/${ad.uuid}`, state: { ad: ad } }}
 						>
-							<AdScreen ad={ad} />
+							<JobVacancyList ad={ad} />
 
 						</Link>
 						</div>
 						<div className="col-xs-1 col-lg-1 col-sm-1 col-md-1">
 						<button
-						className="btn btn-success"
-						style={{ marginLeft: "85%",marginTop:"50%"}}
+						className="btn btn-success save"
 						onClick={() => saveHandler(ad)}
 						disabled={getButtonState(ad)}
 					>
@@ -104,21 +104,8 @@ const Home: React.FC = () => {
 				);
 			})}
 			<br />
-			<button
-				className="btn btn-primary"
-				onClick={prevHandler}
-				disabled={first}
-			>
-				prev
-			</button>
-			<button
-				className="btn btn-primary"
-				style={{ marginLeft: "88%" }}
-				onClick={nextHandler}
-				disabled={last}
-			>
-				next
-			</button>
+			{ ads.length!=0 && <button className="btn btn-primary" onClick={prevHandler} disabled={first}>Prev</button> }
+			{ ads.length!=0 && <button className="btn btn-primary next" onClick={nextHandler} disabled={last}>Next</button> }
 		</div>
 	);
 };
