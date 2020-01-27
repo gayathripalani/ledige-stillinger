@@ -1,10 +1,6 @@
 import React from "react";
 
-
 const PageNotFound: React.FC = () => {
-	//const { state } = useLocation();
-	//console.log(typeof state.toString());
-
 	return (
 		<div>
 			<h1>Page Not Found</h1>

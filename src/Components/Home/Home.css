@@ -1,8 +1,0 @@
-.ad {
-	box-shadow: 2px 2px 2px black;
-	transition: 500ms;
-}
-
-.ad:hover {
-	transform: scale(1.02);
-}

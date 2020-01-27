@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import AdScreen from "../AdScreen/AdScreen";
-import getAd from "../../controller/adController";
+import JobVacancyList from "./JobVacancyList";
+import getAd from "../common/FetchDetail";
 import "bootstrap/dist/css/bootstrap.css";
-import "./Home.css";
-import { AdProps } from "../types/App";
+import "../common/Design.scss";
+import { AdProps } from "../common/Types";
+import SpinnerIcon from "./SpinnerIcon"
 
 const Home: React.FC = () => {
 	const [ads, setAds] = useState<Array<AdProps["ad"]>>([]);
@@ -16,7 +17,6 @@ const Home: React.FC = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		console.log("executing getAds");
 		getAd(page.toString())
 			.then(results => {
 				setAds(results.content);
@@ -24,7 +24,6 @@ const Home: React.FC = () => {
 				setLast(results.last);
 			})
 			.catch(err => {
-				console.log(err);
 				history.push({ pathname: "/error", state:{error:err.toString()} });
 			});
 	}, [page,history]);
@@ -69,18 +68,11 @@ const Home: React.FC = () => {
 
 	return (
 		<div>
-			{ads.length === 0 && <h2>No Data available</h2>}
+			<div style={{alignItems:"center"}}> {ads.length === 0 && <SpinnerIcon />}</div>
+			{ads.length!== 0 && <h3 style={{textAlign:"center"}}>List of job vacancies</h3>}
 			{ads.map((ad: AdProps["ad"]) => {
-				console.log(ad);
 				return (
-					<div className="row ad"
-						style={{
-							border: "2px solid #000",
-							borderRadius: "5px",
-							padding: "2% 1%",
-							margin: "0.5%",
-							flex: 1
-						}}
+					<div className="row ad vacancy-list"
 						key={ad.uuid}
 					>
           <div className="col-xs-10 col-lg-10 col-sm-10 col-md-10">
@@ -88,14 +80,13 @@ const Home: React.FC = () => {
 							style={{ textDecoration: "none" }}
 							to={{ pathname: `/ads/${ad.uuid}`, state: { ad: ad } }}
 						>
-							<AdScreen ad={ad} />
+							<JobVacancyList ad={ad} />
 
 						</Link>
 						</div>
 						<div className="col-xs-1 col-lg-1 col-sm-1 col-md-1">
 						<button
-						className="btn btn-success"
-						style={{ marginLeft: "85%",marginTop:"50%"}}
+						className="btn btn-success save"
 						onClick={() => saveHandler(ad)}
 						disabled={getButtonState(ad)}
 					>
@@ -107,21 +98,8 @@ const Home: React.FC = () => {
 				);
 			})}
 			<br />
-			<button
-				className="btn btn-primary"
-				onClick={prevHandler}
-				disabled={first}
-			>
-				prev
-			</button>
-			<button
-				className="btn btn-primary"
-				style={{ marginLeft: "88%" }}
-				onClick={nextHandler}
-				disabled={last}
-			>
-				next
-			</button>
+			{ ads.length !== 0 && <button className="btn btn-primary" onClick={prevHandler} disabled={first}>Prev</button> }
+			{ ads.length !== 0 && <button className="btn btn-primary next" onClick={nextHandler} disabled={last}>Next</button> }
 		</div>
 	);
 };

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AdScreen from "./AdScreen/AdScreen";
-import "./Home/Home.css";
-import { AdProps } from "./types/App";
+import JobVacancyList from "./JobVacancyList";
+import "../common/Design.scss";
+import { AdProps } from "../common/Types";
 
-const SavedScreen: React.FC = () => {
+const SavedJobs: React.FC = () => {
 
 	const [ads, setAds] = useState<Array<AdProps["ad"]>>([]);
 
@@ -25,31 +25,25 @@ const SavedScreen: React.FC = () => {
 
 	return (
 		<>
+		  {ads.length !== 0 && <h3 style={{textAlign:"center"}}>Saved Ads</h3>}
 			{ads.length === 0 && <h2>No Saved Ads</h2>}
 			{ads.map((ad: AdProps["ad"]) => {
 				return (
-					<div className="row ad"
-						style={{
-							border: "2px solid #000",
-							borderRadius: "5px",
-							padding: "2% 1%",
-							margin: "0.5%",
-							flex: 1,
-						}}
+					<div className="row ad vacancy-list"
 						key={ad.uuid}
+						 data-testid={`savedjob_${ad.uuid}`}
 					>
 					<div className="col-xs-10 col-lg-10 col-sm-10 col-md-10">
 						<Link
 							style={{ textDecoration: "none" }}
 							to={{ pathname: `/ads/${ad.uuid}`, state: { ad: ad } }}
 						>
-							<AdScreen ad={ad} />
+							<JobVacancyList ad={ad} />
 						</Link>
 						</div>
 						<div className="col-xs-1 col-lg-1 col-sm-1 col-md-1">
 						<button
-							className="btn btn-danger"
-							style={{ marginLeft: "85%",marginTop:"50%"}}
+							className="btn btn-danger remove"
 							onClick={() => removeHandler(ad.uuid)}
 						>
 							Remove
@@ -62,4 +56,4 @@ const SavedScreen: React.FC = () => {
 	);
 };
 
-export default SavedScreen;
+export default SavedJobs;

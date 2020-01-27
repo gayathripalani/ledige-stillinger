@@ -1,0 +1,61 @@
+.app_container {
+	display: flex;
+	flex-direction: column;
+	margin: 1% 5%;
+}
+
+.ad {
+	box-shadow: 2px 2px 2px black;
+	transition: 500ms;
+}
+
+.ad:hover {
+	transform: scale(1.02);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+p{
+	color:black;
+	padding-right:30px;
+}
+
+div {
+	color: black;
+}
+
+a {
+	padding:15px;
+}
+
+.btn-success {
+	&.save {
+		margin-left: 85%;
+		margin-top: 25%;
+	}
+}
+
+.btn-primary {
+	&.next {
+		margin-left: 92%;
+	}
+}
+
+.btn-danger {
+  &.remove {
+    margin-left: 85%;
+    margin-top: 20%;
+  }
+}
+
+.row {
+   &.vacancy-list {
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 0.5%;
+    flex: 1;
+   }
+}
