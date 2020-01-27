@@ -30,7 +30,7 @@ const SavedJobs: React.FC = () => {
 				return (
 					<div className="row ad vacancy-list"
 						key={ad.uuid}
-						 data-testid={`savescreen_${ad.uuid}`}
+						 data-testid={`savedjob_${ad.uuid}`}
 					>
 					<div className="col-xs-10 col-lg-10 col-sm-10 col-md-10">
 						<Link
